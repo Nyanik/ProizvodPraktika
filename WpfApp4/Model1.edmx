@@ -1,0 +1,407 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище ПрактикаModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Город">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название" Type="nvarchar" MaxLength="99" Nullable="false" />
+          <Property Name="IDТур" Type="int" Nullable="false" />
+          <Property Name="Цена" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Гостиница">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название" Type="nvarchar" MaxLength="99" Nullable="false" />
+          <Property Name="Описание" Type="nvarchar" MaxLength="500" />
+          <Property Name="IDГород" Type="int" Nullable="false" />
+          <Property Name="Цена" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ДатаТур">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDТур" Type="int" Nullable="false" />
+          <Property Name="ДатаНачала" Type="date" Nullable="false" />
+          <Property Name="ДатаОкончания" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Клиент">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ФИО" Type="nvarchar" MaxLength="99" Nullable="false" />
+          <Property Name="Серия" Type="int" Nullable="false" />
+          <Property Name="Номер" Type="int" Nullable="false" />
+          <Property Name="Телефон" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Возраст" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="КлиентТур">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDТура" Type="int" Nullable="false" />
+          <Property Name="IDГорода" Type="int" Nullable="false" />
+          <Property Name="IDКлиента" Type="int" Nullable="false" />
+          <Property Name="IDГостиницы" Type="int" Nullable="false" />
+          <Property Name="Сумма" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Тур">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название" Type="nvarchar" MaxLength="99" Nullable="false" />
+          <Property Name="Цена" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Город_Тур">
+          <End Role="Тур" Type="Self.Тур" Multiplicity="1" />
+          <End Role="Город" Type="Self.Город" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Тур">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Город">
+              <PropertyRef Name="IDТур" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Гостиница_Город">
+          <End Role="Город" Type="Self.Город" Multiplicity="1" />
+          <End Role="Гостиница" Type="Self.Гостиница" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Город">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Гостиница">
+              <PropertyRef Name="IDГород" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ДатаТур_Тур">
+          <End Role="Тур" Type="Self.Тур" Multiplicity="1" />
+          <End Role="ДатаТур" Type="Self.ДатаТур" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Тур">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ДатаТур">
+              <PropertyRef Name="IDТур" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_КлиентТур_Клиент">
+          <End Role="Клиент" Type="Self.Клиент" Multiplicity="1" />
+          <End Role="КлиентТур" Type="Self.КлиентТур" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Клиент">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="КлиентТур">
+              <PropertyRef Name="IDКлиента" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_КлиентТур_Тур">
+          <End Role="Тур" Type="Self.Тур" Multiplicity="1" />
+          <End Role="КлиентТур" Type="Self.КлиентТур" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Тур">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="КлиентТур">
+              <PropertyRef Name="IDТура" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ПрактикаModelContainer">
+          <EntitySet Name="Город" EntityType="Self.Город" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Гостиница" EntityType="Self.Гостиница" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ДатаТур" EntityType="Self.ДатаТур" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Клиент" EntityType="Self.Клиент" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="КлиентТур" EntityType="Self.КлиентТур" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Тур" EntityType="Self.Тур" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Город_Тур" Association="Self.FK_Город_Тур">
+            <End Role="Тур" EntitySet="Тур" />
+            <End Role="Город" EntitySet="Город" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Гостиница_Город" Association="Self.FK_Гостиница_Город">
+            <End Role="Город" EntitySet="Город" />
+            <End Role="Гостиница" EntitySet="Гостиница" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ДатаТур_Тур" Association="Self.FK_ДатаТур_Тур">
+            <End Role="Тур" EntitySet="Тур" />
+            <End Role="ДатаТур" EntitySet="ДатаТур" />
+          </AssociationSet>
+          <AssociationSet Name="FK_КлиентТур_Клиент" Association="Self.FK_КлиентТур_Клиент">
+            <End Role="Клиент" EntitySet="Клиент" />
+            <End Role="КлиентТур" EntitySet="КлиентТур" />
+          </AssociationSet>
+          <AssociationSet Name="FK_КлиентТур_Тур" Association="Self.FK_КлиентТур_Тур">
+            <End Role="Тур" EntitySet="Тур" />
+            <End Role="КлиентТур" EntitySet="КлиентТур" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ПрактикаModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Гостиница">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Описание" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IDГород" Type="Int32" Nullable="false" />
+          <Property Name="Цена" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Город" Relationship="ПрактикаModel.FK_Гостиница_Город" FromRole="Гостиница" ToRole="Город" />
+        </EntityType>
+        <EntityType Name="ДатаТур">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDТур" Type="Int32" Nullable="false" />
+          <Property Name="ДатаНачала" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ДатаОкончания" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Тур" Relationship="Self.FK_ДатаТур_Тур" FromRole="ДатаТур" ToRole="Тур" />
+        </EntityType>
+        <EntityType Name="Клиент">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ФИО" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Серия" Type="Int32" Nullable="false" />
+          <Property Name="Номер" Type="Int32" Nullable="false" />
+          <Property Name="Телефон" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Возраст" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="КлиентТур" Relationship="Self.FK_КлиентТур_Клиент" FromRole="Клиент" ToRole="КлиентТур" />
+        </EntityType>
+        <EntityType Name="КлиентТур">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDТура" Type="Int32" Nullable="false" />
+          <Property Name="IDГорода" Type="Int32" Nullable="false" />
+          <Property Name="IDКлиента" Type="Int32" Nullable="false" />
+          <Property Name="IDГостиницы" Type="Int32" Nullable="false" />
+          <Property Name="Сумма" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Клиент" Relationship="Self.FK_КлиентТур_Клиент" FromRole="КлиентТур" ToRole="Клиент" />
+          <NavigationProperty Name="Тур" Relationship="Self.FK_КлиентТур_Тур" FromRole="КлиентТур" ToRole="Тур" />
+        </EntityType>
+        <EntityType Name="Тур">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Цена" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="ДатаТур" Relationship="Self.FK_ДатаТур_Тур" FromRole="Тур" ToRole="ДатаТур" />
+          <NavigationProperty Name="КлиентТур" Relationship="Self.FK_КлиентТур_Тур" FromRole="Тур" ToRole="КлиентТур" />
+          <NavigationProperty Name="Город" Relationship="ПрактикаModel.FK_Город_Тур" FromRole="Тур" ToRole="Город" />
+        </EntityType>
+        <Association Name="FK_ДатаТур_Тур">
+          <End Role="Тур" Type="Self.Тур" Multiplicity="1" />
+          <End Role="ДатаТур" Type="Self.ДатаТур" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Тур">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ДатаТур">
+              <PropertyRef Name="IDТур" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_КлиентТур_Клиент">
+          <End Role="Клиент" Type="Self.Клиент" Multiplicity="1" />
+          <End Role="КлиентТур" Type="Self.КлиентТур" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Клиент">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="КлиентТур">
+              <PropertyRef Name="IDКлиента" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_КлиентТур_Тур">
+          <End Role="Тур" Type="Self.Тур" Multiplicity="1" />
+          <End Role="КлиентТур" Type="Self.КлиентТур" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Тур">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="КлиентТур">
+              <PropertyRef Name="IDТура" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Гостиница" EntityType="Self.Гостиница" />
+          <EntitySet Name="ДатаТур" EntityType="Self.ДатаТур" />
+          <EntitySet Name="Клиент" EntityType="Self.Клиент" />
+          <EntitySet Name="КлиентТур" EntityType="Self.КлиентТур" />
+          <EntitySet Name="Тур" EntityType="Self.Тур" />
+          <AssociationSet Name="FK_ДатаТур_Тур" Association="Self.FK_ДатаТур_Тур">
+            <End Role="Тур" EntitySet="Тур" />
+            <End Role="ДатаТур" EntitySet="ДатаТур" />
+          </AssociationSet>
+          <AssociationSet Name="FK_КлиентТур_Клиент" Association="Self.FK_КлиентТур_Клиент">
+            <End Role="Клиент" EntitySet="Клиент" />
+            <End Role="КлиентТур" EntitySet="КлиентТур" />
+          </AssociationSet>
+          <AssociationSet Name="FK_КлиентТур_Тур" Association="Self.FK_КлиентТур_Тур">
+            <End Role="Тур" EntitySet="Тур" />
+            <End Role="КлиентТур" EntitySet="КлиентТур" />
+          </AssociationSet>
+          <EntitySet Name="Город" EntityType="ПрактикаModel.Город" />
+          <AssociationSet Name="FK_Город_Тур" Association="ПрактикаModel.FK_Город_Тур">
+            <End Role="Тур" EntitySet="Тур" />
+            <End Role="Город" EntitySet="Город" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Гостиница_Город" Association="ПрактикаModel.FK_Гостиница_Город">
+            <End Role="Город" EntitySet="Город" />
+            <End Role="Гостиница" EntitySet="Гостиница" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Город">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название" Type="String" Nullable="false" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="IDТур" Type="Int32" Nullable="false" />
+          <Property Name="Цена" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <NavigationProperty Name="Тур" Relationship="ПрактикаModel.FK_Город_Тур" FromRole="Город" ToRole="Тур" />
+          <NavigationProperty Name="Гостиница" Relationship="ПрактикаModel.FK_Гостиница_Город" FromRole="Город" ToRole="Гостиница" />
+        </EntityType>
+        <Association Name="FK_Город_Тур">
+          <End Type="ПрактикаModel.Тур" Role="Тур" Multiplicity="1" />
+          <End Type="ПрактикаModel.Город" Role="Город" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Тур">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Город">
+              <PropertyRef Name="IDТур" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Гостиница_Город">
+          <End Type="ПрактикаModel.Город" Role="Город" Multiplicity="1" />
+          <End Type="ПрактикаModel.Гостиница" Role="Гостиница" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Город">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Гостиница">
+              <PropertyRef Name="IDГород" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ПрактикаModelContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Гостиница">
+            <EntityTypeMapping TypeName="ПрактикаModel.Гостиница">
+              <MappingFragment StoreEntitySet="Гостиница">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+                <ScalarProperty Name="Описание" ColumnName="Описание" />
+                <ScalarProperty Name="IDГород" ColumnName="IDГород" />
+                <ScalarProperty Name="Цена" ColumnName="Цена" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ДатаТур">
+            <EntityTypeMapping TypeName="ПрактикаModel.ДатаТур">
+              <MappingFragment StoreEntitySet="ДатаТур">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IDТур" ColumnName="IDТур" />
+                <ScalarProperty Name="ДатаНачала" ColumnName="ДатаНачала" />
+                <ScalarProperty Name="ДатаОкончания" ColumnName="ДатаОкончания" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Клиент">
+            <EntityTypeMapping TypeName="ПрактикаModel.Клиент">
+              <MappingFragment StoreEntitySet="Клиент">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ФИО" ColumnName="ФИО" />
+                <ScalarProperty Name="Серия" ColumnName="Серия" />
+                <ScalarProperty Name="Номер" ColumnName="Номер" />
+                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+                <ScalarProperty Name="Возраст" ColumnName="Возраст" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="КлиентТур">
+            <EntityTypeMapping TypeName="ПрактикаModel.КлиентТур">
+              <MappingFragment StoreEntitySet="КлиентТур">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IDТура" ColumnName="IDТура" />
+                <ScalarProperty Name="IDГорода" ColumnName="IDГорода" />
+                <ScalarProperty Name="IDКлиента" ColumnName="IDКлиента" />
+                <ScalarProperty Name="IDГостиницы" ColumnName="IDГостиницы" />
+                <ScalarProperty Name="Сумма" ColumnName="Сумма" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Тур">
+            <EntityTypeMapping TypeName="ПрактикаModel.Тур">
+              <MappingFragment StoreEntitySet="Тур">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+                <ScalarProperty Name="Цена" ColumnName="Цена" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Город">
+            <EntityTypeMapping TypeName="ПрактикаModel.Город">
+              <MappingFragment StoreEntitySet="Город">
+                <ScalarProperty Name="Цена" ColumnName="Цена" />
+                <ScalarProperty Name="IDТур" ColumnName="IDТур" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
