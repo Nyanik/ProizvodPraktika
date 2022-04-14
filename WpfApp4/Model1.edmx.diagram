@@ -8,15 +8,15 @@
         <EntityTypeShape EntityType="ПрактикаModel.Гостиница" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
         <EntityTypeShape EntityType="ПрактикаModel.ДатаТур" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ПрактикаModel.Клиент" Width="1.5" PointX="3.75" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ПрактикаModel.КлиентТур" Width="1.5" PointX="6" PointY="6" IsExpanded="true" />
         <EntityTypeShape EntityType="ПрактикаModel.Тур" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
         <AssociationConnector Association="ПрактикаModel.FK_ДатаТур_Тур" ManuallyRouted="false" />
-        <AssociationConnector Association="ПрактикаModel.FK_КлиентТур_Клиент" ManuallyRouted="false" />
-        <AssociationConnector Association="ПрактикаModel.FK_КлиентТур_Тур" ManuallyRouted="false" />
         <EntityTypeShape EntityType="ПрактикаModel.Город" Width="1.5" PointX="3" PointY="2.25" />
         <AssociationConnector Association="ПрактикаModel.FK_Город_Тур" />
         <AssociationConnector Association="ПрактикаModel.FK_Гостиница_Город" />
-      </Diagram>
+        <EntityTypeShape EntityType="ПрактикаModel.КлиентТур" Width="1.5" PointX="6" PointY="6.375" />
+        <AssociationConnector Association="ПрактикаModel.FK_КлиентТур_Клиент" />
+        <AssociationConnector Association="ПрактикаModel.FK_КлиентТур_Тур" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

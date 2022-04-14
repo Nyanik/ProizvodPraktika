@@ -18,8 +18,8 @@ namespace WpfApp4
         public Тур()
         {
             this.ДатаТур = new HashSet<ДатаТур>();
-            this.КлиентТур = new HashSet<КлиентТур>();
             this.Город = new HashSet<Город>();
+            this.КлиентТур = new HashSet<КлиентТур>();
         }
     
         public int ID { get; set; }
@@ -29,8 +29,8 @@ namespace WpfApp4
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ДатаТур> ДатаТур { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<КлиентТур> КлиентТур { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Город> Город { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<КлиентТур> КлиентТур { get; set; }
     }
 }

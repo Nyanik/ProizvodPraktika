@@ -1,0 +1,33 @@
+﻿<Page x:Class="WpfApp4.KlientPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp4"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="KlientPage">
+
+    <Grid>
+        <StackPanel>
+            <GroupBox Header="Введите ФИО клиента">
+                <TextBox Name="TBTitle"></TextBox>
+            </GroupBox>
+            <GroupBox Header="Введите серию паспорта">
+                <TextBox Name="TBSer"></TextBox>
+            </GroupBox>
+            <GroupBox Header="Введите номер паспорта">
+                <TextBox Name="TBNamb"></TextBox>
+            </GroupBox>
+
+            <GroupBox Header="Введите номер телефона">
+                <TextBox Name="TBTel"></TextBox>
+            </GroupBox>
+            <GroupBox Header="Введите возраст">
+                <TextBox Name="TBAge"></TextBox>
+            </GroupBox>
+            <Button Click="Button_Click">Записать информацию</Button>
+            <Button Click="Button_Click_1">Вернуться к просмотру информации</Button>
+        </StackPanel>
+    </Grid>
+</Page>

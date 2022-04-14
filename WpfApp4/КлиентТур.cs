@@ -15,9 +15,11 @@ namespace WpfApp4
     public partial class КлиентТур
     {
         public int ID { get; set; }
-        public int IDТура { get; set; }
-        public int IDГорода { get; set; }
         public int IDКлиента { get; set; }
+        public int IDТура { get; set; }
+        public System.DateTime ДатаНачала { get; set; }
+        public System.DateTime ДатаОкончания { get; set; }
+        public int IDГорода { get; set; }
         public int IDГостиницы { get; set; }
         public decimal Сумма { get; set; }
     
