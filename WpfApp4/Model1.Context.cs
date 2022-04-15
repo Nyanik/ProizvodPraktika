@@ -25,11 +25,11 @@ namespace WpfApp4
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Город> Город { get; set; }
         public virtual DbSet<Гостиница> Гостиница { get; set; }
         public virtual DbSet<ДатаТур> ДатаТур { get; set; }
         public virtual DbSet<Клиент> Клиент { get; set; }
-        public virtual DbSet<Тур> Тур { get; set; }
-        public virtual DbSet<Город> Город { get; set; }
         public virtual DbSet<КлиентТур> КлиентТур { get; set; }
+        public virtual DbSet<Тур> Тур { get; set; }
     }
 }

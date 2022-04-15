@@ -20,12 +20,15 @@ namespace WpfApp4
     /// </summary>
     public partial class OperatePage : Page
     {
+        List<КлиентТур> KlientStart = BaseClass.Base.КлиентТур.ToList();
         КлиентТур KT = new КлиентТур();
+        List<КлиентТур> PRFilter;
         bool flag;
 
         public OperatePage()
         {
             InitializeComponent();
+            LVKlientTur.ItemsSource = KlientStart;
             List<Клиент> Klient = BaseClass.Base.Клиент.ToList();
 
             for (int i = 0; i < Klient.Count; i++)
@@ -161,6 +164,7 @@ namespace WpfApp4
 
         private void BtnWrite_Click(object sender, RoutedEventArgs e)
         {
+            
             if (CBKlient.SelectedIndex != -1 && CBTur.SelectedIndex != -1 && CBDateTur.SelectedIndex != -1 && CBTown.SelectedIndex != -1 && CBHotel.SelectedIndex != -1)
             {
                 flag = true;
@@ -169,53 +173,32 @@ namespace WpfApp4
             {
                 int idKl = CBKlient.SelectedIndex+1;
                 KT.IDКлиента = idKl;
+                KT.Клиент = Convert.ToString(CBKlient.SelectedValue);
                 int idTur = CBTur.SelectedIndex+1;
                 KT.IDТура = idTur;
+                KT.Тур = Convert.ToString(CBTur.SelectedValue);
                 string DateStart = Convert.ToString(CBDateTur.SelectedValue);
                 KT.ДатаНачала = Convert.ToDateTime(DateStart);
-                KT.ДатаОкончания = Convert.ToDateTime(TBEndTur.Text);
-                List<Город> Town = BaseClass.Base.Город.ToList();
-                int index = 0;
-                string strTown = (string)CBTown.SelectedValue;
-                foreach (Город item in Town)
-                {
-                    for (int i = 0; i < Town.Count; i++)
-                    {
-                        if (strTown == item.Название)
-                        {
-                            index = item.ID;
-                        }
-                    }
-                }
-                KT.IDГорода = index;
-                List<Гостиница> Hotel = BaseClass.Base.Гостиница.ToList();
-                int indexD = 0;
-                string strHotel = (string)CBHotel.SelectedValue;
-                foreach (Гостиница item in Hotel)
-                {
-                    for (int i = 0; i < Hotel.Count; i++)
-                    {
-                        if (strHotel == item.Название)
-                        {
-                            indexD = item.ID;
-                        }
-                    }
-                }
-                KT.IDГостиницы = indexD;
+                KT.ДатаОкончания = Convert.ToDateTime(TBEndTur.Text);                
+                KT.Город =Convert.ToString(CBTown.SelectedValue);                             
+                KT.Гостиница =Convert.ToString(CBHotel.SelectedValue);
                 KT.Сумма = Convert.ToInt32(TBsumm.Text);
                 if (flag == true)
                 {
                     BaseClass.Base.КлиентТур.Add(KT);
-                }
+                }                
+               
                 BaseClass.Base.SaveChanges();
-                MessageBox.Show("Данные записаны");
+                MessageBox.Show("Данные записаны");               
                 CBKlient.SelectedIndex = -1;
                 CBTur.SelectedIndex = -1;
                 CBDateTur.Items.Clear();
                 TBEndTur.Text = "";
                 CBTown.Items.Clear();
                 CBHotel.Items.Clear();
-                TBsumm.Text = "";                      
+                TBsumm.Text = "";
+                LVKlientTur.Items.Refresh();
+                FrameClass.FrameMain.Navigate(new OperatePage());
             }
             catch
             {
@@ -223,6 +206,47 @@ namespace WpfApp4
             }
         }
 
-        
+        private void BtnShow_Click(object sender, RoutedEventArgs e)
+        {
+            TBView.Visibility = Visibility.Visible;
+            SPVeiwMenu.Visibility = Visibility.Visible;
+            LVKlientTur.Visibility = Visibility.Visible;
+            LOGO.Visibility = Visibility.Collapsed;
+        }
+
+        private void Filter()
+        {
+            PRFilter = KlientStart;
+            
+            
+            if (!string.IsNullOrWhiteSpace(TBFilter.Text))
+            {
+                PRFilter = PRFilter.Where(x => x.Клиент.ToLower().Contains(TBFilter.Text) || x.Тур.ToLower().Contains(TBFilter.Text)).ToList();             
+            }
+            LVKlientTur.ItemsSource = PRFilter;
+        }
+        private void LVKlientTur_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            BtnDel.Visibility = Visibility.Visible;
+            if (LVKlientTur.SelectedIndex == -1)
+            {
+                BtnDel.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void TBFilter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Filter();
+        }
+
+        private void BtnDel_Click(object sender, RoutedEventArgs e)
+        {
+            int ind = LVKlientTur.SelectedIndex + 1;
+            КлиентТур PrDel = BaseClass.Base.КлиентТур.FirstOrDefault(y => y.ID == ind);
+            BaseClass.Base.КлиентТур.Remove(PrDel);
+            BaseClass.Base.SaveChanges();
+            MessageBox.Show("Запись удалена");
+            FrameClass.FrameMain.Navigate(new OperatePage());
+        }
     }
 }

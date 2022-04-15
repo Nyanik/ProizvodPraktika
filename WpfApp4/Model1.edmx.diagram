@@ -5,18 +5,18 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="9e061c89bc694afa908ce486b52cf8e6" Name="Diagram1">
-        <EntityTypeShape EntityType="ПрактикаModel.Гостиница" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ПрактикаModel.ДатаТур" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ПрактикаModel.Клиент" Width="1.5" PointX="3.75" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ПрактикаModel.Тур" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
-        <AssociationConnector Association="ПрактикаModel.FK_ДатаТур_Тур" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="ПрактикаModel.Город" Width="1.5" PointX="3" PointY="2.25" />
+        <EntityTypeShape EntityType="ПрактикаModel.Город" Width="1.5" PointX="3" PointY="10.25" />
+        <EntityTypeShape EntityType="ПрактикаModel.Гостиница" Width="1.5" PointX="5.25" PointY="10.25" />
+        <EntityTypeShape EntityType="ПрактикаModel.ДатаТур" Width="1.5" PointX="3" PointY="7.5" />
+        <EntityTypeShape EntityType="ПрактикаModel.Клиент" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ПрактикаModel.КлиентТур" Width="1.5" PointX="3" PointY="3.25" />
+        <EntityTypeShape EntityType="ПрактикаModel.Тур" Width="1.5" PointX="0.75" PointY="4.875" />
         <AssociationConnector Association="ПрактикаModel.FK_Город_Тур" />
         <AssociationConnector Association="ПрактикаModel.FK_Гостиница_Город" />
-        <EntityTypeShape EntityType="ПрактикаModel.КлиентТур" Width="1.5" PointX="6" PointY="6.375" />
+        <AssociationConnector Association="ПрактикаModel.FK_ДатаТур_Тур" />
         <AssociationConnector Association="ПрактикаModel.FK_КлиентТур_Клиент" />
         <AssociationConnector Association="ПрактикаModel.FK_КлиентТур_Тур" />
-        </Diagram>
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

@@ -17,8 +17,8 @@ namespace WpfApp4
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Тур()
         {
-            this.ДатаТур = new HashSet<ДатаТур>();
             this.Город = new HashSet<Город>();
+            this.ДатаТур = new HashSet<ДатаТур>();
             this.КлиентТур = new HashSet<КлиентТур>();
         }
     
@@ -27,9 +27,9 @@ namespace WpfApp4
         public decimal Цена { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ДатаТур> ДатаТур { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Город> Город { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ДатаТур> ДатаТур { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<КлиентТур> КлиентТур { get; set; }
     }
