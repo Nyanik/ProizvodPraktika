@@ -59,6 +59,28 @@
           <Property Name="Гостиница" Type="nvarchar" MaxLength="99" Nullable="false" />
           <Property Name="Сумма" Type="decimal" Precision="10" Scale="2" Nullable="false" />
         </EntityType>
+        <EntityType Name="Роли">
+          <Key>
+            <PropertyRef Name="ID_Роль" />
+          </Key>
+          <Property Name="ID_Роль" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название_роли" Type="nvarchar" MaxLength="99" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Сотрудники">
+          <Key>
+            <PropertyRef Name="ID_Сотрудника" />
+          </Key>
+          <Property Name="ID_Сотрудника" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Фамилия" Type="nvarchar" MaxLength="99" Nullable="false" />
+          <Property Name="Имя" Type="nvarchar" MaxLength="99" Nullable="false" />
+          <Property Name="Отчество" Type="nvarchar" MaxLength="99" Nullable="false" />
+          <Property Name="ID_Роль" Type="int" Nullable="false" />
+          <Property Name="Телефон" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Зарег_клиентов" Type="int" Nullable="false" />
+          <Property Name="Оформ_туров" Type="int" Nullable="false" />
+          <Property Name="Логин" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Пароль" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Тур">
           <Key>
             <PropertyRef Name="ID" />
@@ -127,12 +149,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Сотрудники_Роли">
+          <End Role="Роли" Type="Self.Роли" Multiplicity="1" />
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Роли">
+              <PropertyRef Name="ID_Роль" />
+            </Principal>
+            <Dependent Role="Сотрудники">
+              <PropertyRef Name="ID_Роль" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище ПрактикаModelContainer">
           <EntitySet Name="Город" EntityType="Self.Город" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Гостиница" EntityType="Self.Гостиница" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ДатаТур" EntityType="Self.ДатаТур" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Клиент" EntityType="Self.Клиент" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="КлиентТур" EntityType="Self.КлиентТур" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Роли" EntityType="Self.Роли" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Сотрудники" EntityType="Self.Сотрудники" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Тур" EntityType="Self.Тур" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Город_Тур" Association="Self.FK_Город_Тур">
             <End Role="Тур" EntitySet="Тур" />
@@ -154,6 +190,10 @@
             <End Role="Тур" EntitySet="Тур" />
             <End Role="КлиентТур" EntitySet="КлиентТур" />
           </AssociationSet>
+          <AssociationSet Name="FK_Сотрудники_Роли" Association="Self.FK_Сотрудники_Роли">
+            <End Role="Роли" EntitySet="Роли" />
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -165,6 +205,8 @@
           <EntitySet Name="ДатаТур" EntityType="ПрактикаModel.ДатаТур" />
           <EntitySet Name="Клиент" EntityType="ПрактикаModel.Клиент" />
           <EntitySet Name="КлиентТур" EntityType="ПрактикаModel.КлиентТур" />
+          <EntitySet Name="Роли" EntityType="ПрактикаModel.Роли" />
+          <EntitySet Name="Сотрудники" EntityType="ПрактикаModel.Сотрудники" />
           <EntitySet Name="Тур" EntityType="ПрактикаModel.Тур" />
           <AssociationSet Name="FK_Город_Тур" Association="ПрактикаModel.FK_Город_Тур">
             <End Role="Тур" EntitySet="Тур" />
@@ -185,6 +227,10 @@
           <AssociationSet Name="FK_КлиентТур_Тур" Association="ПрактикаModel.FK_КлиентТур_Тур">
             <End Role="Тур" EntitySet="Тур" />
             <End Role="КлиентТур" EntitySet="КлиентТур" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Сотрудники_Роли" Association="ПрактикаModel.FK_Сотрудники_Роли">
+            <End Role="Роли" EntitySet="Роли" />
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Город">
@@ -247,6 +293,30 @@
           <Property Name="Сумма" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <NavigationProperty Name="Клиент1" Relationship="ПрактикаModel.FK_КлиентТур_Клиент" FromRole="КлиентТур" ToRole="Клиент" />
           <NavigationProperty Name="Тур1" Relationship="ПрактикаModel.FK_КлиентТур_Тур" FromRole="КлиентТур" ToRole="Тур" />
+        </EntityType>
+        <EntityType Name="Роли">
+          <Key>
+            <PropertyRef Name="ID_Роль" />
+          </Key>
+          <Property Name="ID_Роль" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название_роли" Type="String" Nullable="false" MaxLength="99" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Сотрудники" Relationship="ПрактикаModel.FK_Сотрудники_Роли" FromRole="Роли" ToRole="Сотрудники" />
+        </EntityType>
+        <EntityType Name="Сотрудники">
+          <Key>
+            <PropertyRef Name="ID_Сотрудника" />
+          </Key>
+          <Property Name="ID_Сотрудника" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Фамилия" Type="String" Nullable="false" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="Имя" Type="String" Nullable="false" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="Отчество" Type="String" Nullable="false" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Роль" Type="Int32" Nullable="false" />
+          <Property Name="Телефон" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Зарег_клиентов" Type="Int32" Nullable="false" />
+          <Property Name="Оформ_туров" Type="Int32" Nullable="false" />
+          <Property Name="Логин" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Пароль" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Роли" Relationship="ПрактикаModel.FK_Сотрудники_Роли" FromRole="Сотрудники" ToRole="Роли" />
         </EntityType>
         <EntityType Name="Тур">
           <Key>
@@ -319,6 +389,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Сотрудники_Роли">
+          <End Type="ПрактикаModel.Роли" Role="Роли" Multiplicity="1" />
+          <End Type="ПрактикаModel.Сотрудники" Role="Сотрудники" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Роли">
+              <PropertyRef Name="ID_Роль" />
+            </Principal>
+            <Dependent Role="Сотрудники">
+              <PropertyRef Name="ID_Роль" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -381,6 +463,30 @@
                 <ScalarProperty Name="IDКлиента" ColumnName="IDКлиента" />
                 <ScalarProperty Name="IDТура" ColumnName="IDТура" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Роли">
+            <EntityTypeMapping TypeName="ПрактикаModel.Роли">
+              <MappingFragment StoreEntitySet="Роли">
+                <ScalarProperty Name="Название_роли" ColumnName="Название_роли" />
+                <ScalarProperty Name="ID_Роль" ColumnName="ID_Роль" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Сотрудники">
+            <EntityTypeMapping TypeName="ПрактикаModel.Сотрудники">
+              <MappingFragment StoreEntitySet="Сотрудники">
+                <ScalarProperty Name="Пароль" ColumnName="Пароль" />
+                <ScalarProperty Name="Логин" ColumnName="Логин" />
+                <ScalarProperty Name="Оформ_туров" ColumnName="Оформ_туров" />
+                <ScalarProperty Name="Зарег_клиентов" ColumnName="Зарег_клиентов" />
+                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+                <ScalarProperty Name="ID_Роль" ColumnName="ID_Роль" />
+                <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="ID_Сотрудника" ColumnName="ID_Сотрудника" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

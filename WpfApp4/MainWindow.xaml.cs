@@ -25,7 +25,7 @@ namespace WpfApp4
             InitializeComponent();
             BaseClass.Base = new Entities();
             FrameClass.FrameMain = MainFrame;
-            FrameClass.FrameMain.Navigate(new OperatePage());
+            FrameClass.FrameMain.Navigate(new AvtoPage());
         }
     }
 }

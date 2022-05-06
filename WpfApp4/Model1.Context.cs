@@ -30,6 +30,8 @@ namespace WpfApp4
         public virtual DbSet<ДатаТур> ДатаТур { get; set; }
         public virtual DbSet<Клиент> Клиент { get; set; }
         public virtual DbSet<КлиентТур> КлиентТур { get; set; }
+        public virtual DbSet<Роли> Роли { get; set; }
+        public virtual DbSet<Сотрудники> Сотрудники { get; set; }
         public virtual DbSet<Тур> Тур { get; set; }
     }
 }

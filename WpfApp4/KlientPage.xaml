@@ -9,7 +9,7 @@
       Title="KlientPage">
 
     <Grid>
-        <StackPanel>
+        <StackPanel HorizontalAlignment="Center" >
             <GroupBox Header="Введите ФИО клиента">
                 <TextBox Name="TBTitle"></TextBox>
             </GroupBox>
@@ -26,8 +26,7 @@
             <GroupBox Header="Введите возраст">
                 <TextBox Name="TBAge"></TextBox>
             </GroupBox>
-            <Button Click="Button_Click">Записать информацию</Button>
-            <Button Click="Button_Click_1">Вернуться к просмотру информации</Button>
+            <Button Click="Button_Click">Записать данные клиента</Button>
         </StackPanel>
     </Grid>
 </Page>

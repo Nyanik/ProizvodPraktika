@@ -24,4 +24,14 @@ namespace WpfApp4
         }
 
     }
+    public partial class Сотрудники
+    {
+        public string FIO
+        {
+            get
+            {
+                return Фамилия + " " + Имя + " " + Отчество;
+            }
+        }
+    }
 }

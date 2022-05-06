@@ -44,6 +44,7 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -68,6 +69,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AdminOpPage.xaml.cs">
+      <DependentUpon>AdminOpPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AvtoPage.xaml.cs">
+      <DependentUpon>AvtoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="KlientPage.xaml.cs">
       <DependentUpon>KlientPage.xaml</DependentUpon>
     </Compile>
@@ -77,6 +84,12 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="PartClass.cs" />
+    <Compile Include="RegOperatorPage.xaml.cs">
+      <DependentUpon>RegOperatorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewingPage.xaml.cs">
+      <DependentUpon>ViewingPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Город.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -92,9 +105,23 @@
     <Compile Include="КлиентТур.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Роли.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Сотрудники.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Тур.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Page Include="AdminOpPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AvtoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="KlientPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -114,6 +141,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="OperatePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RegOperatorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -177,6 +212,11 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\operator.png" />
+    <None Include="Resources\admin.png" />
+    <Resource Include="Resources\airplane.jpg" />
+    <Resource Include="Resources\черные самолеты.jpg" />
+    <Resource Include="Resources\самолеты.jpg" />
     <None Include="Resources\twosun.ico" />
     <Resource Include="Resources\twosun.png" />
   </ItemGroup>

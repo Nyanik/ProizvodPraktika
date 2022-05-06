@@ -22,9 +22,11 @@ namespace WpfApp4
     {
        Клиент klient = new Клиент();
         bool flag;
-        public KlientPage()
+        int KlientRole = 0;
+        public KlientPage(int role)
         {
             InitializeComponent();
+            KlientRole = role;
             flag = true;
         }
 
@@ -47,17 +49,13 @@ namespace WpfApp4
 
                 BaseClass.Base.SaveChanges();
                 MessageBox.Show("Данные записаны");
-                FrameClass.FrameMain.Navigate(new OperatePage());
+                FrameClass.FrameMain.Navigate(new OperatePage(KlientRole));
             }
             catch
             {
                 MessageBox.Show("Данные не записаны");
             }
         }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            FrameClass.FrameMain.Navigate(new OperatePage());
-        }
+      
     }
 }

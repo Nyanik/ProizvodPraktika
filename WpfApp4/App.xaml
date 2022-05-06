@@ -5,12 +5,13 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <Style TargetType="TextBlock">
-            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontSize" Value="18"/>
             <Setter Property="FontFamily" Value="Tw Cen MT"></Setter>
             
         </Style>
         <Style TargetType="ComboBox">
             <Setter Property="FontFamily" Value="Tw Cen MT"></Setter>
+            <Setter Property="FontSize" Value="18"/>
             <Setter Property="Background" Value="blue"/>
             <Setter Property="Foreground" Value="Black"></Setter>
         </Style>
@@ -18,6 +19,10 @@
             <Setter Property="Background" Value="CornflowerBlue"/>
             <Setter Property="FontFamily" Value="Tw Cen MT"></Setter>
             <Setter Property="Foreground" Value="White"></Setter>
+        </Style>
+        <Style TargetType="GroupBox">
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="FontSize" Value="18"/>
         </Style>
     </Application.Resources>
 </Application>
