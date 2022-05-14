@@ -22,12 +22,16 @@ namespace WpfApp4
     {
        Клиент klient = new Клиент();
         bool flag;
+        bool staticsflag;
         int KlientRole = 0;
-        public KlientPage(int role)
+        Сотрудники Empl = new Сотрудники();
+        public KlientPage(int role,Сотрудники empl)
         {
             InitializeComponent();
             KlientRole = role;
             flag = true;
+            
+            Empl = empl;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -44,18 +48,32 @@ namespace WpfApp4
                 if (flag == true)
                 {
                     BaseClass.Base.Клиент.Add(klient);
+                    staticsflag = true;
+                }
+                else
+                {
+                    staticsflag = false;
                 }
 
 
                 BaseClass.Base.SaveChanges();
                 MessageBox.Show("Данные записаны");
-                FrameClass.FrameMain.Navigate(new OperatePage(KlientRole));
+                if(staticsflag == true)
+                {
+                    Empl.Зарег_клиентов = Empl.Зарег_клиентов + 1;
+                    BaseClass.Base.SaveChanges();
+                }
+                FrameClass.FrameMain.Navigate(new OperatePage(KlientRole,Empl));
             }
             catch
             {
                 MessageBox.Show("Данные не записаны");
             }
         }
-      
+
+        private void BTNMainPage_Click(object sender, RoutedEventArgs e)
+        {
+            FrameClass.FrameMain.Navigate(new OperatePage(KlientRole, Empl));
+        }
     }
 }

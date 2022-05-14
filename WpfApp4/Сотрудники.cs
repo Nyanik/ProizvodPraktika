@@ -24,6 +24,7 @@ namespace WpfApp4
         public int Оформ_туров { get; set; }
         public string Логин { get; set; }
         public int Пароль { get; set; }
+        public string Аватар { get; set; }
     
         public virtual Роли Роли { get; set; }
     }

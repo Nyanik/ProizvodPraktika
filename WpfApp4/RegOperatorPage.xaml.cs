@@ -22,7 +22,8 @@ namespace WpfApp4
     {
         Сотрудники Oper = new Сотрудники();
         bool flag;
-        public RegOperatorPage()
+        Сотрудники Empl = new Сотрудники();
+        public RegOperatorPage(Сотрудники empl)
         {
             InitializeComponent();
             flag = true;
@@ -32,12 +33,14 @@ namespace WpfApp4
             {
                 CBSetRole.Items.Add(Role[i].Название_роли);
             }
+            Empl = empl;
         }
-        public RegOperatorPage(Сотрудники Empl)
+        public RegOperatorPage(Сотрудники Operator, Сотрудники empl)
         {
             InitializeComponent();
-            GBLogin.Visibility = Visibility.Collapsed;
-            GBPass.Visibility = Visibility.Collapsed;
+            Empl = empl;
+            TBCreateEmpl.Visibility = Visibility.Collapsed;
+            TBUpEmpl.Visibility = Visibility.Visible;
             BTNChange.Visibility = Visibility.Visible;
             BTNRegOp.Visibility = Visibility.Collapsed;
             flag = true;
@@ -46,18 +49,19 @@ namespace WpfApp4
             {
                 CBSetRole.Items.Add(Role[i].Название_роли);
             }
-            Oper = Empl;
-            TBSurname.Text = Empl.Фамилия;
-            TBName.Text= Empl.Имя;
-            TBMidName.Text = Empl.Отчество;
-            CBSetRole.SelectedIndex = Empl.ID_Роль - 1;
-            TBPhone.Text = Empl.Телефон;
-            TBLogin.Text = Empl.Логин;                        
+            Oper = Operator;
+            TBSurname.Text = Operator.Фамилия;
+            TBName.Text= Operator.Имя;
+            TBMidName.Text = Operator.Отчество;
+            CBSetRole.SelectedIndex = Operator.ID_Роль - 1;
+            TBPhone.Text = Operator.Телефон;
+            TBLogin.Text = Operator.Логин;
+            TBPass.Text = "";
         }
 
         private void BTNEmpl_Click(object sender, RoutedEventArgs e)
         {
-            FrameClass.FrameMain.Navigate(new AdminOpPage());
+            FrameClass.FrameMain.Navigate(new AdminOpPage(Empl));
         }
 
         private void BTNRegOp_Click(object sender, RoutedEventArgs e)
@@ -95,17 +99,21 @@ namespace WpfApp4
                 Oper.Оформ_туров = 0;
                 Oper.Зарег_клиентов = 0;
                 Oper.ID_Роль = CBSetRole.SelectedIndex + 1;
+                if (Oper.ID_Роль == 1)
+                {
+                    Oper.Аватар = "\\Resources\\admin.png";
+                }
+                else
+                {
+                    Oper.Аватар = "\\Resources\\operator.png";
+                }
                 if (flag == true)
                 {
                     BaseClass.Base.Сотрудники.Add(Oper);
                     BaseClass.Base.SaveChanges();
                     MessageBox.Show("Сотрудник зарегистрирован");
-                    FrameClass.FrameMain.Navigate(new AdminOpPage());
-                }
-                else
-                {
-                    MessageBox.Show("Сотрудник не зарегистрирован");
-                }
+                    FrameClass.FrameMain.Navigate(new AdminOpPage(Empl));
+                }                
                 
             }
             catch
@@ -122,13 +130,37 @@ namespace WpfApp4
                 Oper.Имя = TBName.Text;
                 Oper.Отчество = TBMidName.Text;
                 Oper.Телефон = TBPhone.Text;               
-                Oper.ID_Роль = CBSetRole.SelectedIndex + 1;                
-                if (flag == true)
+                Oper.ID_Роль = CBSetRole.SelectedIndex + 1;
+                if (Oper.ID_Роль == 1)
                 {
-                    BaseClass.Base.Сотрудники.Add(Oper);
+                    Oper.Аватар = "\\Resources\\admin.png";
+                }
+                else
+                {
+                    Oper.Аватар = "\\Resources\\operator.png";
+                }                                   
+                Oper.Логин = TBLogin.Text;
+                BaseClass.Base.SaveChanges();                                          
+                if (TBPass.Text != "")
+                {
+                   if (TBPass.Text.Length < 8)
+                   {
+                     MessageBox.Show("Пароль должен содержать не меньше 8 символов!");
+                     flag = false;
+                   }
+                   else
+                   {
+                     int paswordCode = TBPass.Text.GetHashCode();
+                     Oper.Пароль = paswordCode;
+                     BaseClass.Base.SaveChanges();
+                            
+                   }
+                }                
+                if (flag == true)
+                {                    
                     BaseClass.Base.SaveChanges();
                     MessageBox.Show("Данные сотрудника изменены");
-                    FrameClass.FrameMain.Navigate(new AdminOpPage());
+                    FrameClass.FrameMain.Navigate(new AdminOpPage(Empl));
                 }
                 else
                 {

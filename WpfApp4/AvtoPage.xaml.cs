@@ -35,25 +35,9 @@ namespace WpfApp4
                 MessageBox.Show("Вы не зарегистрированы");
             }
             else
-            {
-                switch (Empl.ID_Роль)
-                {
-                    case 1:
-                        MessageBox.Show("Здравствуйте, администратор " + Empl.Имя);
-                        role = Empl.ID_Роль;
-                        FrameClass.FrameMain.Navigate(new OperatePage(role));                        
-                        break;
-                    case 2:
-                        MessageBox.Show("Здравствуйте, Ст. оператор " + Empl.Имя);
-                        role = Empl.ID_Роль;
-                        FrameClass.FrameMain.Navigate(new OperatePage(role));  
-                        break;
-                    case 3:
-                        MessageBox.Show("Здравствуйте, оператор " + Empl.Имя);
-                        role = Empl.ID_Роль;
-                        FrameClass.FrameMain.Navigate(new OperatePage(role));  
-                        break;
-                }
+            {              
+               role = Empl.ID_Роль;
+               FrameClass.FrameMain.Navigate(new OperatePage(role,Empl));                                                             
             }
         }
     }

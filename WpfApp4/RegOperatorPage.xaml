@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WpfApp4"
       mc:Ignorable="d" 
-      d:DesignHeight="650" d:DesignWidth="800"
+      d:DesignHeight="700" d:DesignWidth="800"
       Title="RegOperatorPage"
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
     <Page.Resources>
@@ -272,10 +272,11 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0">
-            <Button  Name="BTNEmpl" Click="BTNEmpl_Click" Height="60" Width="100" Margin="0,0,0,0" Template="{DynamicResource ButtonRegOpPageStyle1}">Операторы</Button>
+            <Button  Name="BTNEmpl" Click="BTNEmpl_Click" Height="60" Width="110" Margin="0,0,0,0" Template="{DynamicResource ButtonRegOpPageStyle1}">Операторы</Button>
         </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0" >
-            <TextBlock TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" Margin="0,0,0,10" >Регистрация <LineBreak></LineBreak> сотрудника</TextBlock>
+            <TextBlock Name="TBCreateEmpl" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" Margin="0,0,0,10" >Регистрация <LineBreak></LineBreak> сотрудника</TextBlock>
+            <TextBlock Name="TBUpEmpl" Visibility="Collapsed" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" Margin="0,0,0,10" >Редактирование <LineBreak></LineBreak> сотрудника</TextBlock>
             <GroupBox Header="Фамилия:">
                 <TextBox Name="TBSurname" Style="{DynamicResource TextBoxRegOperatorPageStyle1}"></TextBox>
             </GroupBox>
@@ -297,7 +298,7 @@
             <GroupBox Name="GBPass" Header="Пароль:">
                 <TextBox Name="TBPass" Style="{DynamicResource TextBoxRegOperatorPageStyle1}"></TextBox>
             </GroupBox>
-            <Button Name="BTNRegOp"  Click="BTNRegOp_Click" Template="{DynamicResource ButtonRegOpPageStyle1}" Width="160" Margin="0,5,0,0" >Зарегистрировать</Button>
+            <Button Name="BTNRegOp"  Click="BTNRegOp_Click" Template="{DynamicResource ButtonRegOpPageStyle1}" Width="170" Margin="0,5,0,0" >Зарегистрировать</Button>
             <Button Name="BTNChange" Click="BTNChange_Click" Visibility="Collapsed" Width="160" Margin="0,5,0,0" Template="{DynamicResource ButtonRegOpPageStyle1}">Изменить</Button>
         </StackPanel>
     </Grid>

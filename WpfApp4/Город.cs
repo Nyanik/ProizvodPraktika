@@ -22,7 +22,7 @@ namespace WpfApp4
     
         public int ID { get; set; }
         public string Название { get; set; }
-        public int IDТур { get; set; }
+        public Nullable<int> IDТур { get; set; }
         public decimal Цена { get; set; }
     
         public virtual Тур Тур { get; set; }

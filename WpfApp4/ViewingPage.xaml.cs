@@ -25,7 +25,8 @@ namespace WpfApp4
         List<КлиентТур> PRFilter;
         List<Тур> PRFilterTur;
         int ViewRole = 0;
-        public ViewingPage(int role)
+        Сотрудники Empl = new Сотрудники();
+        public ViewingPage(int role,Сотрудники empl)
         {
             InitializeComponent();
             ViewRole = role;
@@ -35,6 +36,7 @@ namespace WpfApp4
             {
                 BTNTur.Visibility = Visibility.Visible;
             }
+            Empl = empl;
         }
        
 
@@ -84,30 +86,35 @@ namespace WpfApp4
                 BaseClass.Base.КлиентТур.Remove(PrDel);
                 BaseClass.Base.SaveChanges();
                 MessageBox.Show("Запись удалена!");
-                FrameClass.FrameMain.Navigate(new OperatePage(ViewRole));
+                FrameClass.FrameMain.Navigate(new ViewingPage(ViewRole,Empl));
             }
 
         }
 
         private void BTNMainPage_Click(object sender, RoutedEventArgs e)
         {
-            FrameClass.FrameMain.Navigate(new OperatePage(ViewRole));
+            FrameClass.FrameMain.Navigate(new OperatePage(ViewRole, Empl));
         }
 
         private void TextBlock_Loaded(object sender, RoutedEventArgs e)
         {
             TextBlock tb = (TextBlock)sender;
+            tb.Text = "";
             int index = Convert.ToInt32(tb.Uid);
             List<Город> Town = BaseClass.Base.Город.Where(x => x.IDТур == index).ToList();
-            string str = "";
+            string str = "";            
             foreach (Город item in Town)
             {               
-               if (index == item.IDТур)
-               {
-                  str += item.Название + ", ";
-               }                              
+                    if (index == item.IDТур)
+                    {
+                        str += item.Название + ", ";
+                    }                
+                    tb.Text = "Города: " + str.Substring(0, str.Length - 2) + ".";               
             }
-            tb.Text = "Города: " + str.Substring(0, str.Length - 2) + ".";
+            if (tb.Text == "")
+            {
+                tb.Text = "Города: нет информации о городах.";
+            }
         }
 
         private void BTNTur_Click(object sender, RoutedEventArgs e)
@@ -133,6 +140,19 @@ namespace WpfApp4
         private void TBFilter1_TextChanged(object sender, TextChangedEventArgs e)
         {
             FilterTur();
+        }
+
+        private void BtnAddTur_Click(object sender, RoutedEventArgs e)
+        {
+            FrameClass.FrameMain.Navigate(new CreateOrUpdateTurPage(ViewRole, Empl));
+        }
+
+        private void BTNUpTur_Click(object sender, RoutedEventArgs e)
+        {
+            Button B = (Button)sender;
+            int ind = Convert.ToInt32(B.Uid);
+            Тур Tur = BaseClass.Base.Тур.FirstOrDefault(y => y.ID == ind);
+            FrameClass.FrameMain.Navigate(new CreateOrUpdateTurPage(ViewRole, Tur, Empl));
         }
     }
 }

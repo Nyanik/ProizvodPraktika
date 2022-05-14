@@ -7,10 +7,10 @@
       <Diagram DiagramId="9e061c89bc694afa908ce486b52cf8e6" Name="Diagram1" ZoomLevel="40">
         <EntityTypeShape EntityType="ПрактикаModel.Город" Width="1.5" PointX="3" PointY="3.25" />
         <EntityTypeShape EntityType="ПрактикаModel.Гостиница" Width="1.5" PointX="5.25" PointY="3.25" />
-        <EntityTypeShape EntityType="ПрактикаModel.ДатаТур" Width="1.5" PointX="3" PointY="6.25" />
-        <EntityTypeShape EntityType="ПрактикаModel.Клиент" Width="1.5" PointX="3.75" PointY="9.625" />
+        <EntityTypeShape EntityType="ПрактикаModel.ДатаТур" Width="1.5" PointX="3" PointY="10.25" />
+        <EntityTypeShape EntityType="ПрактикаModel.Клиент" Width="1.5" PointX="3.75" PointY="6.625" />
         <EntityTypeShape EntityType="ПрактикаModel.КлиентТур" Width="1.5" PointX="6" PointY="7.125" />
-        <EntityTypeShape EntityType="ПрактикаModel.Роли" Width="1.5" PointX="7.75" PointY="1.75" />
+        <EntityTypeShape EntityType="ПрактикаModel.Роли" Width="1.5" PointX="7.75" PointY="1.875" />
         <EntityTypeShape EntityType="ПрактикаModel.Сотрудники" Width="1.5" PointX="10" PointY="1" />
         <EntityTypeShape EntityType="ПрактикаModel.Тур" Width="1.5" PointX="0.75" PointY="4.625" />
         <AssociationConnector Association="ПрактикаModel.FK_Город_Тур" />

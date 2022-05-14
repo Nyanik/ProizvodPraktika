@@ -22,10 +22,12 @@ namespace WpfApp4
     {
         List<Сотрудники> Operators = BaseClass.Base.Сотрудники.ToList();
         int AdminRole = 1;
-        public AdminOpPage()
+        Сотрудники Empl = new Сотрудники();
+        public AdminOpPage(Сотрудники empl)
         {
             InitializeComponent();
             LVOperator.ItemsSource = Operators;
+            Empl = empl;
         }
 
        
@@ -40,25 +42,25 @@ namespace WpfApp4
                     str += item.Название_роли + "";
                 
             }
-            tb.Text = str;
+            tb.Text = "Роль:" + str;
         }
 
         private void BTNMainPage_Click(object sender, RoutedEventArgs e)
         {
-            FrameClass.FrameMain.Navigate(new OperatePage(AdminRole));
+            FrameClass.FrameMain.Navigate(new OperatePage(AdminRole,Empl));
         }
 
         private void BTNRegOp_Click(object sender, RoutedEventArgs e)
         {
-            FrameClass.FrameMain.Navigate(new RegOperatorPage());
+            FrameClass.FrameMain.Navigate(new RegOperatorPage(Empl));
         }
 
         private void BTNUp_Click(object sender, RoutedEventArgs e)
         {
             Button B = (Button)sender;
             int ind = Convert.ToInt32(B.Uid);
-            Сотрудники Empl = BaseClass.Base.Сотрудники.FirstOrDefault(y => y.ID_Сотрудника == ind);
-            FrameClass.FrameMain.Navigate(new RegOperatorPage(Empl));            
+            Сотрудники Oper = BaseClass.Base.Сотрудники.FirstOrDefault(y => y.ID_Сотрудника == ind);
+            FrameClass.FrameMain.Navigate(new RegOperatorPage(Oper,Empl));            
         }
 
         private void BtnDel_Click(object sender, RoutedEventArgs e)
@@ -69,7 +71,7 @@ namespace WpfApp4
             BaseClass.Base.Сотрудники.Remove(EmplDel);
             BaseClass.Base.SaveChanges();
             MessageBox.Show("Сотрудник удалён!");
-            FrameClass.FrameMain.Navigate(new AdminOpPage());
+            FrameClass.FrameMain.Navigate(new AdminOpPage(Empl));
         }
     }
 }

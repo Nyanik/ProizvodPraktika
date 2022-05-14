@@ -17,7 +17,7 @@ namespace WpfApp4
         public int ID { get; set; }
         public string Название { get; set; }
         public string Описание { get; set; }
-        public int IDГород { get; set; }
+        public Nullable<int> IDГород { get; set; }
         public decimal Цена { get; set; }
     
         public virtual Город Город { get; set; }

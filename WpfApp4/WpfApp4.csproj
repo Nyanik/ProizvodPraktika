@@ -75,6 +75,15 @@
     <Compile Include="AvtoPage.xaml.cs">
       <DependentUpon>AvtoPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CreateOrUpdateHotel.xaml.cs">
+      <DependentUpon>CreateOrUpdateHotel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CreateOrUpdateTownPage.xaml.cs">
+      <DependentUpon>CreateOrUpdateTownPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CreateOrUpdateTurPage.xaml.cs">
+      <DependentUpon>CreateOrUpdateTurPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="KlientPage.xaml.cs">
       <DependentUpon>KlientPage.xaml</DependentUpon>
     </Compile>
@@ -83,7 +92,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="PartClass.cs" />
+    <Compile Include="Class\PartClass.cs" />
+    <Compile Include="PersonalAccountPage.xaml.cs">
+      <DependentUpon>PersonalAccountPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RegOperatorPage.xaml.cs">
       <DependentUpon>RegOperatorPage.xaml</DependentUpon>
     </Compile>
@@ -122,6 +134,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CreateOrUpdateHotel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreateOrUpdateTownPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreateOrUpdateTurPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="KlientPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -141,6 +165,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="OperatePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PersonalAccountPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -212,8 +240,8 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-    <None Include="Resources\operator.png" />
-    <None Include="Resources\admin.png" />
+    <Resource Include="Resources\operator.png" />
+    <Resource Include="Resources\admin.png" />
     <Resource Include="Resources\airplane.jpg" />
     <Resource Include="Resources\черные самолеты.jpg" />
     <Resource Include="Resources\самолеты.jpg" />
@@ -223,5 +251,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

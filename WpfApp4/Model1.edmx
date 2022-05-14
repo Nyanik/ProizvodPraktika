@@ -11,7 +11,7 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Название" Type="nvarchar" MaxLength="99" Nullable="false" />
-          <Property Name="IDТур" Type="int" Nullable="false" />
+          <Property Name="IDТур" Type="int" />
           <Property Name="Цена" Type="decimal" Precision="10" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="Гостиница">
@@ -21,7 +21,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Название" Type="nvarchar" MaxLength="99" Nullable="false" />
           <Property Name="Описание" Type="nvarchar" MaxLength="500" />
-          <Property Name="IDГород" Type="int" Nullable="false" />
+          <Property Name="IDГород" Type="int" />
           <Property Name="Цена" Type="decimal" Precision="10" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="ДатаТур">
@@ -80,6 +80,7 @@
           <Property Name="Оформ_туров" Type="int" Nullable="false" />
           <Property Name="Логин" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Пароль" Type="int" Nullable="false" />
+          <Property Name="Аватар" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Тур">
           <Key>
@@ -90,7 +91,9 @@
           <Property Name="Цена" Type="decimal" Precision="10" Scale="2" Nullable="false" />
         </EntityType>
         <Association Name="FK_Город_Тур">
-          <End Role="Тур" Type="Self.Тур" Multiplicity="1" />
+          <End Role="Тур" Type="Self.Тур" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Город" Type="Self.Город" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Тур">
@@ -102,7 +105,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Гостиница_Город">
-          <End Role="Город" Type="Self.Город" Multiplicity="1" />
+          <End Role="Город" Type="Self.Город" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Гостиница" Type="Self.Гостиница" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Город">
@@ -114,7 +119,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ДатаТур_Тур">
-          <End Role="Тур" Type="Self.Тур" Multiplicity="1" />
+          <End Role="Тур" Type="Self.Тур" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ДатаТур" Type="Self.ДатаТур" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Тур">
@@ -239,7 +246,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Название" Type="String" Nullable="false" MaxLength="99" FixedLength="false" Unicode="true" />
-          <Property Name="IDТур" Type="Int32" Nullable="false" />
+          <Property Name="IDТур" Type="Int32" />
           <Property Name="Цена" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <NavigationProperty Name="Тур" Relationship="ПрактикаModel.FK_Город_Тур" FromRole="Город" ToRole="Тур" />
           <NavigationProperty Name="Гостиница" Relationship="ПрактикаModel.FK_Гостиница_Город" FromRole="Город" ToRole="Гостиница" />
@@ -251,7 +258,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Название" Type="String" Nullable="false" MaxLength="99" FixedLength="false" Unicode="true" />
           <Property Name="Описание" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="IDГород" Type="Int32" Nullable="false" />
+          <Property Name="IDГород" Type="Int32" />
           <Property Name="Цена" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <NavigationProperty Name="Город" Relationship="ПрактикаModel.FK_Гостиница_Город" FromRole="Гостиница" ToRole="Город" />
         </EntityType>
@@ -316,6 +323,7 @@
           <Property Name="Оформ_туров" Type="Int32" Nullable="false" />
           <Property Name="Логин" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Пароль" Type="Int32" Nullable="false" />
+          <Property Name="Аватар" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Роли" Relationship="ПрактикаModel.FK_Сотрудники_Роли" FromRole="Сотрудники" ToRole="Роли" />
         </EntityType>
         <EntityType Name="Тур">
@@ -330,7 +338,9 @@
           <NavigationProperty Name="КлиентТур" Relationship="ПрактикаModel.FK_КлиентТур_Тур" FromRole="Тур" ToRole="КлиентТур" />
         </EntityType>
         <Association Name="FK_Город_Тур">
-          <End Type="ПрактикаModel.Тур" Role="Тур" Multiplicity="1" />
+          <End Type="ПрактикаModel.Тур" Role="Тур" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="ПрактикаModel.Город" Role="Город" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Тур">
@@ -342,7 +352,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Гостиница_Город">
-          <End Type="ПрактикаModel.Город" Role="Город" Multiplicity="1" />
+          <End Type="ПрактикаModel.Город" Role="Город" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="ПрактикаModel.Гостиница" Role="Гостиница" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Город">
@@ -354,7 +366,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ДатаТур_Тур">
-          <End Type="ПрактикаModel.Тур" Role="Тур" Multiplicity="1" />
+          <End Type="ПрактикаModel.Тур" Role="Тур" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="ПрактикаModel.ДатаТур" Role="ДатаТур" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Тур">
@@ -477,6 +491,7 @@
           <EntitySetMapping Name="Сотрудники">
             <EntityTypeMapping TypeName="ПрактикаModel.Сотрудники">
               <MappingFragment StoreEntitySet="Сотрудники">
+                <ScalarProperty Name="Аватар" ColumnName="Аватар" />
                 <ScalarProperty Name="Пароль" ColumnName="Пароль" />
                 <ScalarProperty Name="Логин" ColumnName="Логин" />
                 <ScalarProperty Name="Оформ_туров" ColumnName="Оформ_туров" />

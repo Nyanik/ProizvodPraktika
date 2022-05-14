@@ -636,42 +636,43 @@
             </ControlTemplate.Triggers>
         </ControlTemplate>
     </Page.Resources>
-    <Grid>
+    <Grid >
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0">
-            <Button Template="{DynamicResource ButtonStyle}" Height="60" Width="100" Margin="0,0,10,0">
+            <Button Name="BTN_PersAcc" Click="BTN_PersAcc_Click" Template="{DynamicResource ButtonStyle}" Height="60" Width="110" Margin="0,0,10,0">
                 <TextBlock TextAlignment="Center">Личный <LineBreak></LineBreak> кабинет</TextBlock>
             </Button>
-            <Button Name="BTNTur" Click="BTNTur_Click" Template="{DynamicResource ButtonStyle}" Height="60" Width="100" Margin="0,0,10,0">Туры</Button>
-            <Button Name="BTNEmpl" Click="BTNEmpl_Click" Visibility="Collapsed" Template="{DynamicResource ButtonStyle}" Height="60" Width="100" Margin="0,0,10,0">Операторы</Button>
-            <Button Name="BTNOut" Click="BTNOut_Click" Template="{DynamicResource ButtonStyle}" Height="60" Width="100" Background="IndianRed">Выход</Button>
+            <Button Name="BTNTur" Click="BTNTur_Click" Template="{DynamicResource ButtonStyle}" Height="60" Width="110" Margin="0,0,10,0">Туры</Button>
+            <Button Name="BTNEmpl" Click="BTNEmpl_Click" Visibility="Collapsed" Template="{DynamicResource ButtonStyle}" Height="60" Width="110" Margin="0,0,10,0">Операторы</Button>
+            <Button Name="BTNOut" Click="BTNOut_Click" Template="{DynamicResource ButtonStyle}" Height="60" Width="110" Background="IndianRed">Выход</Button>
         </StackPanel>
         <ScrollViewer Grid.Row="1"  VerticalScrollBarVisibility="Hidden" >
             <StackPanel Margin="0,30,0,0" HorizontalAlignment="Center">
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" Margin="0,0,0,10" >Запись на тур</TextBlock>
-                <Button Margin="0,0,0,10" Template="{DynamicResource ButtonStyle}" Width="165" Click="Button_Click" >Добавить клиента</Button>
+                <Button Margin="0,0,0,10" Template="{DynamicResource ButtonStyle}" Width="175" Click="Button_Click" >Добавить клиента</Button>
                 <StackPanel  >
                 <GroupBox Header="Выберите клиента:" >
-                    <ComboBox Template="{DynamicResource ComboBoxStyle}"  Name="CBKlient"></ComboBox>
+                        <ComboBox Name="CBKlient" IsEditable="True"></ComboBox>
                 </GroupBox>
 
                 <GroupBox Header="Выберите тур:" >
-                    <ComboBox  Name="CBTur" SelectionChanged="CBTur_SelectionChanged" Template="{DynamicResource ComboBoxStyle}"></ComboBox>
+                        <ComboBox  Name="CBTur" SelectionChanged="CBTur_SelectionChanged" IsEditable="True"></ComboBox>
                 </GroupBox>
                 <GroupBox Header="Выберите дату начала:" >
-                    <ComboBox  SelectionChanged="CBDateTur_SelectionChanged" Name="CBDateTur" Template="{DynamicResource ComboBoxStyle}" ></ComboBox>
+                        <ComboBox  SelectionChanged="CBDateTur_SelectionChanged" Name="CBDateTur" IsEditable="True" ></ComboBox>
                 </GroupBox>
                 <GroupBox Name="GBDateEnd" Visibility="Collapsed" Header="Дата окончания:" >
                     <TextBlock Margin="5,0,0,0" Name="TBEndTur"></TextBlock>
                 </GroupBox>
                 <GroupBox Header="Выберите город:" >
-                    <ComboBox  Name="CBTown" SelectionChanged="CBTown_SelectionChanged" Template="{DynamicResource ComboBoxStyle}"></ComboBox>
+                        <ComboBox  Name="CBTown" SelectionChanged="CBTown_SelectionChanged" IsEditable="True"></ComboBox>
                 </GroupBox>
                 <GroupBox Header="Выберите гостиницу" >
-                    <ComboBox SelectionChanged="CBHotel_SelectionChanged"  Name="CBHotel" Template="{DynamicResource ComboBoxStyle}"></ComboBox>
+                        <ComboBox SelectionChanged="CBHotel_SelectionChanged"  Name="CBHotel" IsEditable="True"></ComboBox>
                 </GroupBox>
 
                 <GroupBox Name="GBSum" Visibility="Collapsed" Header="Итоговая сумма:" >
@@ -679,7 +680,7 @@
                 </GroupBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,0">
-                    <Button Name="BtnWrite"  Template="{DynamicResource ButtonStyle}">Записать данные</Button>
+                    <Button Name="BtnWrite" Width="175" Template="{DynamicResource ButtonStyle}">Записать данные</Button>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>

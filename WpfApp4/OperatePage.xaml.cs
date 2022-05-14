@@ -21,11 +21,12 @@ namespace WpfApp4
     public partial class OperatePage : Page
     {
         List<КлиентТур> KlientStart = BaseClass.Base.КлиентТур.ToList();
-        КлиентТур KT = new КлиентТур();        
+        КлиентТур KT = new КлиентТур();       
         bool flag;
-
+        bool staticsflag;
+        Сотрудники Empl = new Сотрудники();
         int OperateRole = 0;
-        public OperatePage(int role)
+        public OperatePage(int role, Сотрудники empl)
         {
             InitializeComponent();
             OperateRole = role;
@@ -40,14 +41,20 @@ namespace WpfApp4
                 CBKlient.Items.Add(Klient[i].ФИО);
             }
             List<Тур> Tur = BaseClass.Base.Тур.ToList();
+            
             for (int i = 0; i < Tur.Count; i++)
             {
-                CBTur.Items.Add(Tur[i].Название);
-            }                       
+                int index = Tur[i].ID;
+                List<Тур> TurAd = BaseClass.Base.Тур.Where(a => a.ID == index).ToList();
+                CBTur.Items.Add(TurAd[0].Название);
+                //CBTur.Items.Add(Tur[i].Название);
+            }
+            Empl = empl;
+
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            FrameClass.FrameMain.Navigate(new KlientPage(OperateRole));
+            FrameClass.FrameMain.Navigate(new KlientPage(OperateRole,Empl));
         }
         private void CBTur_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -55,12 +62,17 @@ namespace WpfApp4
             CBDateTur.Items.Clear();
             CBTown.Items.Clear();
             CBHotel.Items.Clear();
+
+              
             int index = CBTur.SelectedIndex+1;
             List<ДатаТур> DateTur = BaseClass.Base.ДатаТур.Where(x => x.IDТур == index).ToList();
                      
             for (int i = 0; i < DateTur.Count; i++)
-            {            
-             CBDateTur.Items.Add(DateTur[i].ДатаНачала);
+            {
+                int indexD = DateTur[i].ID;
+                List<ДатаТур> DateAd = BaseClass.Base.ДатаТур.Where(a => a.ID == indexD).ToList();
+                CBDateTur.Items.Add(DateAd[0].ДатаНачала);
+                //CBDateTur.Items.Add(DateTur[i].ДатаНачала);
             }
             
             List<Город> Town = BaseClass.Base.Город.Where(x => x.IDТур == index).ToList();
@@ -188,10 +200,20 @@ namespace WpfApp4
                 if (flag == true)
                 {
                     BaseClass.Base.КлиентТур.Add(KT);
+                    staticsflag = true;
+                }
+                else
+                {
+                    staticsflag = false;
                 }
 
                 BaseClass.Base.SaveChanges();
                 MessageBox.Show("Данные записаны");
+                if (staticsflag == true)
+                {
+                    Empl.Оформ_туров = Empl.Оформ_туров + 1;
+                    BaseClass.Base.SaveChanges();
+                }                
                 CBKlient.SelectedIndex = -1;
                 CBTur.SelectedIndex = -1;
                 CBDateTur.Items.Clear();
@@ -207,7 +229,7 @@ namespace WpfApp4
         }       
         private void BTNTur_Click(object sender, RoutedEventArgs e)
         {
-            FrameClass.FrameMain.Navigate(new ViewingPage(OperateRole));
+            FrameClass.FrameMain.Navigate(new ViewingPage(OperateRole,Empl));
         }
         private void BTNOut_Click(object sender, RoutedEventArgs e)
         {
@@ -215,7 +237,12 @@ namespace WpfApp4
         }
         private void BTNEmpl_Click(object sender, RoutedEventArgs e)
         {
-            FrameClass.FrameMain.Navigate(new AdminOpPage());
+            FrameClass.FrameMain.Navigate(new AdminOpPage(Empl));
+        }
+
+        private void BTN_PersAcc_Click(object sender, RoutedEventArgs e)
+        {
+            FrameClass.FrameMain.Navigate(new PersonalAccountPage(OperateRole, Empl));
         }
     }
 }

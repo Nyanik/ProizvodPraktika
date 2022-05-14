@@ -91,24 +91,23 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0">
-            <Button Name="BTNMainPage" Click="BTNMainPage_Click" Template="{DynamicResource ButtonTemplateStyleView}"  Height="60" Width="100" Margin="0,0,10,0">
-                <TextBlock>Главная <LineBreak></LineBreak> страница</TextBlock>
+            <Button Name="BTNMainPage" Click="BTNMainPage_Click" Template="{DynamicResource ButtonTemplateStyleView}"  Height="60" Width="110" Margin="0,0,10,0">
+                <TextBlock TextAlignment="Center">Главная <LineBreak></LineBreak> страница</TextBlock>
             </Button>
-            <Button Name="BTNTur" Click="BTNTur_Click" Visibility="Collapsed" Height="60" Width="100" Margin="0,0,10,0" Template="{DynamicResource ButtonTemplateStyleView}">Туры</Button>
-            <Button Name="BTNApplTur" Click="BTNApplTur_Click" Visibility="Collapsed" Height="60" Width="100" Template="{DynamicResource ButtonTemplateStyleView}">
-                <TextBlock>Заявки <LineBreak></LineBreak> на туры</TextBlock>
+            <Button Name="BTNTur" Click="BTNTur_Click" Visibility="Collapsed" Height="60" Width="110" Margin="0,0,10,0" Template="{DynamicResource ButtonTemplateStyleView}">Туры</Button>
+            <Button Name="BTNApplTur" Click="BTNApplTur_Click" Visibility="Collapsed" Height="60" Width="110" Template="{DynamicResource ButtonTemplateStyleView}">
+                <TextBlock TextAlignment="Center">Заявки <LineBreak></LineBreak> на туры</TextBlock>
             </Button>
         </StackPanel>
         <StackPanel Margin="0,0,0,0" Name="SPVeiwMenu" Visibility="Visible" Grid.Row="1" VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Center">
-            <TextBox Style="{DynamicResource TextBoxStyleView}" Name="TBFilter" TextChanged="TBFilter_TextChanged" Width="250"></TextBox>
+            <TextBox Style="{DynamicResource TextBoxStyleView}" Name="TBFilter" TextChanged="TBFilter_TextChanged" Height="30" Width="250"></TextBox>
             <Button Name="BtnDel" Click="BtnDel_Click" Background="IndianRed" Margin="20,0,0,0"  Width="100" Visibility="Collapsed" Template="{DynamicResource ButtonTemplateStyleView}">Удалить</Button>
         </StackPanel>
         <StackPanel Margin="0,0,0,0" Name="SPVeiwTurMenu" Visibility="Collapsed" Grid.Row="1" VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Center">
-            <TextBox Style="{DynamicResource TextBoxStyleView}" TextChanged="TBFilter1_TextChanged" Name="TBFilter1"  Width="250"></TextBox>
-            <Button Name="BtnDel1"  Background="IndianRed" Margin="20,0,0,0"  Width="100" Visibility="Collapsed" Template="{DynamicResource ButtonTemplateStyleView}">Удалить</Button>
-            <Button Name="BtnUp"  Margin="20,0,0,0"  Width="100" Visibility="Collapsed" Template="{DynamicResource ButtonTemplateStyleView}">Удалить</Button>
+            <TextBox Style="{DynamicResource TextBoxStyleView}" TextChanged="TBFilter1_TextChanged" Name="TBFilter1" Height="30"  Width="250"></TextBox>
+            <Button Name="BtnAddTur" Click="BtnAddTur_Click"  Margin="20,0,0,0" Width="150" Visibility="Visible" Template="{DynamicResource ButtonTemplateStyleView}">Создать тур</Button>
         </StackPanel>
-        <ListView Name="LVKlientTur" HorizontalAlignment="Center" Visibility="Visible"  SelectionMode="Single" SelectionChanged="LVKlientTur_SelectionChanged"  ScrollViewer.HorizontalScrollBarVisibility="Disabled"  Grid.Row="2" BorderThickness="0">
+        <ListView Name="LVKlientTur" HorizontalAlignment="Center" Visibility="Visible"  SelectionMode="Single" SelectionChanged="LVKlientTur_SelectionChanged"  ScrollViewer.HorizontalScrollBarVisibility="Disabled"  Grid.Row="2" BorderThickness="0"  Margin="0,20,0,0">
             <ListView.ItemsPanel >
                 <ItemsPanelTemplate>
                     <WrapPanel HorizontalAlignment="Center"></WrapPanel>
@@ -117,7 +116,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border Padding="5" CornerRadius="5" BorderThickness="1" BorderBrush="CornflowerBlue">
-                        <Grid Width="450" Height="85">
+                        <Grid Width="500" Height="140">
                             <StackPanel Orientation="Horizontal">
                                 <StackPanel Orientation="Vertical">
                                     <TextBlock Text="{Binding Клиент}"></TextBlock>
@@ -133,7 +132,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <ListView Name="LVTur" HorizontalAlignment="Center" Visibility="Collapsed"  SelectionMode="Single" SelectionChanged="LVKlientTur_SelectionChanged"  ScrollViewer.HorizontalScrollBarVisibility="Disabled"  Grid.Row="2" BorderThickness="0">
+        <ListView Name="LVTur" HorizontalAlignment="Center" Visibility="Collapsed"  SelectionMode="Single" SelectionChanged="LVKlientTur_SelectionChanged"  ScrollViewer.HorizontalScrollBarVisibility="Disabled"  Grid.Row="2" BorderThickness="0"  Margin="0,20,0,0">
             <ListView.ItemsPanel >
                 <ItemsPanelTemplate>
                     <WrapPanel HorizontalAlignment="Center"></WrapPanel>
@@ -142,7 +141,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border Padding="5" CornerRadius="5" BorderThickness="1" BorderBrush="CornflowerBlue">
-                        <Grid Width="450" Height="85">
+                        <Grid Width="500" Height="70">
                             <StackPanel Orientation="Horizontal">
                                 <StackPanel Orientation="Vertical">
                                     <TextBlock Text="{Binding Название, StringFormat={}Наименование тура: {0}}"></TextBlock>
@@ -150,6 +149,7 @@
                                     <TextBlock  Loaded="TextBlock_Loaded" Uid="{Binding ID}"></TextBlock>
                                 </StackPanel>
                             </StackPanel>
+                            <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Name="BTNUpTur" Uid="{Binding ID}" Click="BTNUpTur_Click" Template="{DynamicResource ButtonTemplateStyleView}">Редактировать</Button>
                         </Grid>
                     </Border>
                 </DataTemplate>

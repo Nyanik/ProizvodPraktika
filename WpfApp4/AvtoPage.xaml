@@ -130,15 +130,16 @@
     </Page.Resources>
 
     <Grid>
+        <Image Margin="0,0,0,340" VerticalAlignment="Center" Source="/Resources/twosun.png" Height="200" Width="200"></Image>
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock FontSize="40">Авторизация</TextBlock>
             <GroupBox Header="Введите логин:" Margin="0,10,0,10">
-                <TextBox Name="TBLoginAvto"  Style="{DynamicResource TextBoxStyleAvto}" ></TextBox>
+                <TextBox Name="TBLoginAvto"  Style="{DynamicResource TextBoxStyleAvto}" >meluzov76</TextBox>
             </GroupBox>
             <GroupBox Header="Введите пароль:">
                 <PasswordBox Name="TBPasAvto" Style="{DynamicResource PasswordBoxStyleAvto}"></PasswordBox>
             </GroupBox>
-            <Button Name="BTNAvto" Click="BTNAvto_Click" Width="115" Template="{DynamicResource ButtonStyleAvto}" Margin="0,10,0,0" >Авторизация</Button>
+            <Button Name="BTNAvto" Click="BTNAvto_Click" Width="115" Template="{DynamicResource ButtonStyleAvto}" Margin="0,10,0,0" >Войти</Button>
         </StackPanel>
     </Grid>
 </Page>

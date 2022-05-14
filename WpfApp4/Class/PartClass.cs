@@ -18,12 +18,12 @@ namespace WpfApp4
         public string DateTur
         {
             get
-            {
-                return ДатаНачала + " - " + ДатаОкончания;
+            {                
+                return Convert.ToString(ДатаНачала.ToShortDateString()) + " - " + Convert.ToString(ДатаОкончания.ToShortDateString());
             }
         }
-
-    }
+        
+            }
     public partial class Сотрудники
     {
         public string FIO
