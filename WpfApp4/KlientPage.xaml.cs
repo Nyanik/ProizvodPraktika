@@ -58,7 +58,7 @@ namespace WpfApp4
 
                 BaseClass.Base.SaveChanges();
                 MessageBox.Show("Данные записаны");
-                if(staticsflag == true)
+                if (staticsflag == true)
                 {
                     Empl.Зарег_клиентов = Empl.Зарег_клиентов + 1;
                     BaseClass.Base.SaveChanges();

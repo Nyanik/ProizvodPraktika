@@ -87,8 +87,12 @@
                     <GroupBox Header="Цена:">
                 <TextBox Name="TBCost"  Template="{DynamicResource TextBoxTemplate1}"></TextBox>
                     </GroupBox>
-            <Button Name="BTNAddNewHotel" Click="BTNAddNewHotel_Click" Width="220" Template="{DynamicResource ButtonTemplate1}">Добавить гостиницу</Button>
-            <Button Name="BTNUpHotel" Visibility="Collapsed" Click="BTNUpHotel_Click_1" Width="150" Template="{DynamicResource ButtonTemplate1}">Сохранить</Button>
+            <Button Name="BTNAddNewHotel" Click="BTNAddNewHotel_Click" Width="150" Template="{DynamicResource ButtonTemplate1}">Добавить</Button>
+            <StackPanel Name="SPHotelChangeDel" Orientation="Horizontal" HorizontalAlignment="Center" Visibility="Collapsed">
+                <Button Name="BTNUpHotel"  Click="BTNUpHotel_Click_1" Margin="0,10,10,0" Width="150" Template="{DynamicResource ButtonTemplate1}">Сохранить</Button>
+                <Button Name="BTNDelHotel"  Click="BTNDelHotel_Click" Margin="0,10,0,0" Width="150" Background="IndianRed" Template="{DynamicResource ButtonTemplate1}">Удалить</Button>
+            </StackPanel>
+            
         </StackPanel>
     </Grid>
 </Page>

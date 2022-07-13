@@ -172,7 +172,7 @@ namespace WpfApp4
                 else
                 {
                     
-                    TBsumm.Text = cost + " руб.";
+                    TBsumm.Text = cost +"";
                 }
             } 
             else GBSum.Visibility = Visibility.Collapsed;
@@ -185,7 +185,7 @@ namespace WpfApp4
             }
             try
             {
-                int idKl = CBKlient.SelectedIndex + 1;
+                int idKl = CBKlient.SelectedIndex;
                 KT.IDКлиента = idKl;
                 KT.Клиент = Convert.ToString(CBKlient.SelectedValue);
                 int idTur = CBTur.SelectedIndex + 1;
@@ -213,7 +213,7 @@ namespace WpfApp4
                 {
                     Empl.Оформ_туров = Empl.Оформ_туров + 1;
                     BaseClass.Base.SaveChanges();
-                }                
+                }
                 CBKlient.SelectedIndex = -1;
                 CBTur.SelectedIndex = -1;
                 CBDateTur.Items.Clear();

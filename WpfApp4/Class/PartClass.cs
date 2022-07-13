@@ -34,4 +34,14 @@ namespace WpfApp4
             }
         }
     }
+    public partial class Тур
+    {
+        public string Cost
+        {
+            get
+            {
+                return Convert.ToString(Convert.ToInt32(Цена));
+            }
+        }
+    }
 }

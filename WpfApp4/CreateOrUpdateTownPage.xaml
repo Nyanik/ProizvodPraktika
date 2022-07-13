@@ -124,7 +124,10 @@
                 
             </StackPanel>
             <Button Name="btnSaveNewTown" Click="btnSaveNewTown_Click" Width="150" HorizontalAlignment="Center" Margin="0,10,0,0" Template="{DynamicResource ButtonTemplate1}">Сохранить</Button>
-            <Button Name="btnChangeTown" Click="btnChangeTown_Click" Visibility="Collapsed" Width="150" HorizontalAlignment="Center" Margin="0,10,0,0" Template="{DynamicResource ButtonTemplate1}">Изменить</Button>
+            <StackPanel Name="SPChangeDelMenu" Orientation="Horizontal" HorizontalAlignment="Center" Visibility="Collapsed">
+            <Button Name="btnChangeTown" Click="btnChangeTown_Click"  Width="150" HorizontalAlignment="Center" Margin="0,10,10,0" Template="{DynamicResource ButtonTemplate1}">Изменить</Button>
+            <Button Name="btnDelTown" Click="btnDelTown_Click"  Width="150" Background="IndianRed" HorizontalAlignment="Center" Margin="0,10,0,0" Template="{DynamicResource ButtonTemplate1}">Удалить</Button>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Page>

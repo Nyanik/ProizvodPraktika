@@ -23,22 +23,34 @@ namespace WpfApp4
         Гостиница Hotel = new Гостиница();
         int CreateOrUpRole = 0;
         Сотрудники Empl = new Сотрудники();
+        int indexDel = 0;
         public CreateOrUpdateHotel(int role, Сотрудники empl)
         {
             InitializeComponent();
             CreateOrUpRole = role;
             Empl = empl;
+            List<Гостиница> HotelAdCb = BaseClass.Base.Гостиница.ToList();
+            for (int i = 0; i < HotelAdCb.Count; i++)
+            {
+                CBUpHotel.Items.Add(HotelAdCb[i].Название);
+            }
         }
         public CreateOrUpdateHotel(int role, Гостиница HotelUp, Сотрудники empl)
         {
             InitializeComponent();
             CreateOrUpRole = role;
             Empl = empl;
+            List<Гостиница> HotelAdCb = BaseClass.Base.Гостиница.ToList();
+            for (int i = 0; i < HotelAdCb.Count; i++)
+            {
+                CBUpHotel.Items.Add(HotelAdCb[i].Название);
+            }
             Hotel = HotelUp;
+            indexDel = HotelUp.ID;
             TBCreateHotel.Visibility = Visibility.Collapsed;
             TBUpHotel.Visibility = Visibility.Visible;
             BTNAddNewHotel.Visibility = Visibility.Collapsed;
-            BTNUpHotel.Visibility = Visibility.Visible;
+            SPHotelChangeDel.Visibility = Visibility.Visible;
             TBNameHotel.Text = Hotel.Название;
             TBDesHotel.Text = Hotel.Описание;
             TBCost.Text = Convert.ToString(Hotel.Цена);
@@ -93,6 +105,19 @@ namespace WpfApp4
             catch
             {
                 MessageBox.Show("Гостиница не изменена!");
+            }
+        }
+
+        private void BTNDelHotel_Click(object sender, RoutedEventArgs e)
+        {
+            Гостиница HotelDel = BaseClass.Base.Гостиница.FirstOrDefault(x => x.ID == indexDel);
+            MessageBoxResult result = MessageBox.Show("Вы уверены что хотите удалить гостиницу?", "Удаление гостиницы", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                BaseClass.Base.Гостиница.Remove(HotelDel);
+                BaseClass.Base.SaveChanges();
+                FrameClass.FrameMain.Navigate(new CreateOrUpdateTurPage(CreateOrUpRole, Empl));
+                MessageBox.Show("Запись удалена!", "Удаление записи");
             }
         }
     }

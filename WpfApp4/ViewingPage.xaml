@@ -141,12 +141,12 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border Padding="5" CornerRadius="5" BorderThickness="1" BorderBrush="CornflowerBlue">
-                        <Grid Width="500" Height="70">
+                        <Grid Width="500" Height="90">
                             <StackPanel Orientation="Horizontal">
                                 <StackPanel Orientation="Vertical">
                                     <TextBlock Text="{Binding Название, StringFormat={}Наименование тура: {0}}"></TextBlock>
-                                    <TextBlock Text="{Binding Цена, StringFormat={}Цена тура: {0}}"></TextBlock>
-                                    <TextBlock  Loaded="TextBlock_Loaded" Uid="{Binding ID}"></TextBlock>
+                                    <TextBlock Text="{Binding Cost, StringFormat={}Цена тура: {0} руб.}"></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Width="350" Loaded="TextBlock_Loaded" Uid="{Binding ID}"></TextBlock>
                                 </StackPanel>
                             </StackPanel>
                             <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Name="BTNUpTur" Uid="{Binding ID}" Click="BTNUpTur_Click" Template="{DynamicResource ButtonTemplateStyleView}">Редактировать</Button>

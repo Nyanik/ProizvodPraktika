@@ -23,6 +23,7 @@ namespace WpfApp4
         Город Town = new Город();
         int CreateOrUpRole = 0;
         Сотрудники Empl = new Сотрудники();
+        int indexDel = 0;
         public CreateOrUpdateTownPage(int role, Сотрудники empl)
         {
             InitializeComponent();
@@ -55,10 +56,11 @@ namespace WpfApp4
             CreateOrUpRole = role;
             Empl = empl;
             Town = TownUp;
+            indexDel = TownUp.ID;
             TBCreateTown.Visibility = Visibility.Collapsed;
             TBUpTown.Visibility = Visibility.Visible;
             btnSaveNewTown.Visibility = Visibility.Collapsed;
-            btnChangeTown.Visibility = Visibility.Visible;
+            SPChangeDelMenu.Visibility = Visibility.Visible;
             List<Город> TownAdCb = BaseClass.Base.Город.ToList();
             for (int i = 0; i < TownAdCb.Count; i++)
             {
@@ -224,6 +226,19 @@ namespace WpfApp4
             catch
             {
                 MessageBox.Show("Город не изменен!");
+            }
+        }
+
+        private void btnDelTown_Click(object sender, RoutedEventArgs e)
+        {
+            Город TownDel = BaseClass.Base.Город.FirstOrDefault(x => x.ID == indexDel);
+            MessageBoxResult result = MessageBox.Show("Вы уверены что хотите удалить город?", "Удаление города", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                BaseClass.Base.Город.Remove(TownDel);
+                BaseClass.Base.SaveChanges();
+                FrameClass.FrameMain.Navigate(new CreateOrUpdateTurPage(CreateOrUpRole, Empl));
+                MessageBox.Show("Запись удалена!", "Удаление записи");
             }
         }
     }

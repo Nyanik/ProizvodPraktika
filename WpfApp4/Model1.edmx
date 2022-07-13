@@ -37,7 +37,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ФИО" Type="nvarchar" MaxLength="99" Nullable="false" />
           <Property Name="Серия" Type="int" Nullable="false" />
           <Property Name="Номер" Type="int" Nullable="false" />
@@ -276,7 +276,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ФИО" Type="String" Nullable="false" MaxLength="99" FixedLength="false" Unicode="true" />
           <Property Name="Серия" Type="Int32" Nullable="false" />
           <Property Name="Номер" Type="Int32" Nullable="false" />
